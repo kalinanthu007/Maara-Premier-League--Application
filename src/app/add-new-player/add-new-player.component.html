@@ -1,0 +1,28 @@
+<div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+    <form [formGroup]="register" (ngSubmit)="savePlayer()" style="border:1px solid #ccc">
+        <div class="container" style="width:700px">
+            <h2 class="heading" style="color: blue;">Add/Edit Player</h2>
+            <p class="heading">Every new friend is a new adventure. Let's get connected</p>
+            <hr>
+            <label for="name"><b>ID</b></label>
+            <input type="text" placeholder="Enter Name" name="name" formControlName="id">
+            <label for="name"><b>Name</b></label>
+            <input type="text" placeholder="Enter Name" name="name" formControlName="name">
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="email" formControlName="email">
+
+            <!-- <label for="matchCount"><b>Total Match Count</b></label>
+            <input type="number" placeholder="Enter Match Count" name="matchCount" formControlName="matchCount">
+            <label for="matchCount"><b>Highest Run</b></label>
+            <input type="number" placeholder="Enter Highest Run" name="highestRun" formControlName="highestRun"> -->
+
+            <div class="clearfix">
+                <button type="submit" class="cancel btn button" style="width: 25%;justify-content: center;">Submit</button>
+            </div>
+            <div>
+                <span class="{{messageClass}}">{{message}}</span>
+            </div>
+        </div>
+    </form>
+
+</div>

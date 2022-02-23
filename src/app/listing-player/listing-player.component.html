@@ -1,0 +1,35 @@
+<div style="margin-top: 30px;">
+    <div class="row">
+        <div class="col-sm-4" style="margin-bottom:10px">
+            <!-- <button type="button" class="btn btn-primary">Add New Player</button> -->
+            <a [routerLink]="['create']" #addPlayer class="btn btn-primary btn-rounded">Add New Player</a>
+        </div>
+    </div>
+
+    <div style="width: 1000px;">
+        <table class="table  table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Match Count</th>
+                    <th>Highest Run</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of playerData">
+                    <td>{{item.id}}</td>
+                    <td>{{item.attributes.name}}</td>
+                    <td>{{item.attributes.email}}</td>
+                    <td>{{item.attributes.matchCount}}</td>
+                    <td>{{item.attributes.highestRun}}</td>
+                    <td><button routerLink="edit/{{item.id}}" class="btn btn-primary">Edit</button> |
+                        <button class="btn btn-danger" (click)="delete(item.id)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
