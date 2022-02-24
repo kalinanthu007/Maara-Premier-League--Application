@@ -14,35 +14,32 @@ export class AddNewPlayerComponent implements OnInit {
   editData: any;
 
   constructor(private service: PlayerService, private route: ActivatedRoute) {
+    // Get id from web url
     this.playerId = this.route.snapshot.paramMap.get('id');
-    // alert('test'+this.playerId)
     if (this.playerId !== null) {
-      // alert('player id is not null')
       this.updatePlayer(this.playerId);
     }
    }
 
   ngOnInit(): void {
   }
+
+  // Create obj for player form
   register = new FormGroup({
     id: new FormControl({value:'',disabled:true}),
     name: new FormControl("",Validators.required),
-    email: new FormControl("", Validators.compose([Validators.required, Validators.required])),
-    // matchCount: new FormControl("", Validators.required),
-    // highestRun: new FormControl("",Validators.required),
+    email: new FormControl("", Validators.compose([Validators.required, Validators.required]))
   })
+
+  // Create New Player
   savePlayer() {
-    // alert(this.playerId)
     if (this.register.valid) {
-      console.log(this.register)
-      console.log(this.register.value)
       this.service.savePlayer(this.register.value).subscribe(data => {
         if (data != null) {
-          this.message = 'Super da...'
+          this.message = 'Machi open the bottle..'
           this.messageClass = 'success'
           this.clearPlayer()
         }
-        console.log(data)
       })
     }
     else {
@@ -50,19 +47,19 @@ export class AddNewPlayerComponent implements OnInit {
       this.messageClass='error'
     }
   }
+
   clearPlayer() {
     this.register = new FormGroup({
       id: new FormControl({value:'',disabled:true}),
       name: new FormControl(""),
-      email: new FormControl(""),
-      // matchCount: new FormControl("", Validators.required),
-      // highestRun: new FormControl("",Validators.required),
+      email: new FormControl("")
     })
   }
+
+  // Edit Player info
   updatePlayer(Id:any) {
     this.service.loadPlayerByCode(Id).subscribe(data => {
       this.editData = data;
-      // alert(this.editData.data.id)
       this.register = new FormGroup({
         id: new FormControl({value:this.editData.data.id,disabled:true}),
         name: new FormControl(this.editData.data.attributes.name),
@@ -70,10 +67,5 @@ export class AddNewPlayerComponent implements OnInit {
       })
 
     })
-
-    // alert(this.editData.data.attributes.name)
-
-
-
   }
 }
